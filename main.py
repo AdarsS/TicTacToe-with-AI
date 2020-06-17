@@ -93,6 +93,7 @@ while run:
         while draw_object == 'circle' and not check_player_won():
             if board[1][1] == 0:  # if the player first move isn't the centre spot the computer will make the move
                 draw_circle(200, 200, 35, 35, 1, 1)
+                break
             for i in range(0, 3):  # Check for the winning move. If no winning move is present the computer will choose a random move
                 for j in range(0, 3):
                     if board[i][j] == 0:
