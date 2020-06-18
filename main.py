@@ -94,10 +94,10 @@ while run:
             if board[1][1] == 0:  # if the player first move isn't the centre spot the computer will make the move
                 draw_circle(200, 200, 35, 35, 1, 1)
                 break
-            for i in range(0, 3):  # Check for the winning move. If no winning move is present the computer will choose a random move
+            for i in range(0, 3):  # Checks for the winning move. If no winning move is present the computer will choose a random move
                 for j in range(0, 3):
                     if board[i][j] == 0:
-                        board[i][j] = 2
+                        board[i][j] = 2  # 2 - Computer
                         if check_computer_won():
                             if i == 0 and j == 0:
                                 draw_circle(75, 75, 35, 35, 0, 0)
@@ -128,7 +128,40 @@ while run:
                                 return False
                         else:
                             board[i][j] = 0
-
+            for i in range(0, 3):  # Checks if the player is going to win. If it returns True, the following statements is going to block the move
+                for j in range(0, 3):
+                    if board[i][j] == 0:
+                        board[i][j] = 1  # 1 - Player
+                        if block_player_won():
+                            if i == 0 and j == 0:
+                                draw_circle(75, 75, 35, 35, 0, 0)
+                                return False
+                            if i == 0 and j == 1:
+                                draw_circle(200, 75, 35, 35, 0, 1)
+                                return False
+                            if i == 0 and j == 2:
+                                draw_circle(325, 75, 35, 35, 0, 2)
+                                return False
+                            if i == 1 and j == 0:
+                                draw_circle(75, 200, 35, 35, 1, 0)
+                                return False
+                            if i == 1 and j == 1:  # Centre spot
+                                draw_circle(200, 200, 35, 35, 1, 1)
+                                return False
+                            if i == 1 and j == 2:
+                                draw_circle(325, 200, 35, 35, 1, 2)
+                                return False
+                            if i == 2 and j == 0:
+                                draw_circle(75, 325, 35, 35, 2, 0)
+                                return False
+                            if i == 2 and j == 1:
+                                draw_circle(200, 325, 35, 35, 2, 1)
+                                return False
+                            if i == 2 and j == 2:
+                                draw_circle(325, 325, 35, 35, 2, 2)
+                                return False
+                        else:
+                            board[i][j] = 0
             if x == 1 and board[0][0] == 0:
                 draw_circle(75, 75, 35, 35, 0, 0)
             if x == 2 and board[0][1] == 0:
@@ -171,6 +204,29 @@ while run:
         elif board[0][0] == 2 and board[1][1] == 2 and board[2][2] == 2:
             return True
         elif board[0][2] == 2 and board[1][1] == 2 and board[2][0] == 2:
+            return True
+
+    # Check the player move one step ahead
+    def block_player_won():  # Return true if when the computer checks and the player gets a win from any of the statements
+        global board
+        # Row wise
+        if board[0][0] == 1 and board[0][1] == 1 and board[0][2] == 1:
+            return True
+        elif board[1][0] == 1 and board[1][1] == 1 and board[1][2] == 1:
+            return True
+        elif board[2][0] == 1 and board[2][1] == 1 and board[2][2] == 1:
+            return True
+            # Column wise
+        elif board[0][0] == 1 and board[1][0] == 1 and board[2][0] == 1:
+            return True
+        elif board[0][1] == 1 and board[1][1] == 1 and board[2][1] == 1:
+            return True
+        elif board[0][2] == 1 and board[1][2] == 1 and board[2][2] == 1:
+            return True
+            # Diagonally
+        elif board[0][0] == 1 and board[1][1] == 1 and board[2][2] == 1:
+            return True
+        elif board[0][2] == 1 and board[1][1] == 1 and board[2][0] == 1:
             return True
 
     #  Check if the player or computer won or Draw
