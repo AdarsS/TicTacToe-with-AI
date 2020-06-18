@@ -88,7 +88,7 @@ while run:
 
     # Record computer moves
     def computer_move():
-        choices = [1, 2, 3, 4, 5, 6, 7, 8, 9]  # 9 choices for the computer to make
+        choices = [1, 2, 3]  # 9 choices for the computer to make
         x = random.choice(choices)  # x picks a choice from the choices list
         while draw_object == 'circle' and not check_player_won():
             if board[1][1] == 0:  # if the player first move isn't the centre spot the computer will make the move
@@ -162,22 +162,27 @@ while run:
                                 return False
                         else:
                             board[i][j] = 0
-            if x == 1 and board[0][0] == 0:
+            if board[0][0] == 0:
                 draw_circle(75, 75, 35, 35, 0, 0)
-            if x == 2 and board[0][1] == 0:
+                break
+            if x == 1 and board[0][1] == 0:
                 draw_circle(200, 75, 35, 35, 0, 1)
-            if x == 3 and board[0][2] == 0:
+            if board[0][2] == 0:
                 draw_circle(325, 75, 35, 35, 0, 2)
-            if x == 4 and board[1][0] == 0:
+                break
+            if board[1][0] == 0:
                 draw_circle(75, 200, 35, 35, 1, 0)
-            if x == 6 and board[1][2] == 0:
+                break
+            if x == 2 and board[1][2] == 0:
                 draw_circle(325, 200, 35, 35, 1, 2)
-            if x == 7 and board[2][0] == 0:
+            if board[2][0] == 0:
                 draw_circle(75, 325, 35, 35, 2, 0)
-            if x == 8 and board[2][1] == 0:
+                break
+            if x == 3 and board[2][1] == 0:
                 draw_circle(200, 325, 35, 35, 2, 1)
-            if x == 9 and board[2][2] == 0:
+            if board[2][2] == 0:
                 draw_circle(325, 325, 35, 35, 2, 2)
+                break
             if 0 not in board[0] and 0 not in board[1] and 0 not in board[2]:  # check if any positions available if not break out of loop
                 break
             else:
