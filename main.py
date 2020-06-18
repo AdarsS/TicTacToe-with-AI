@@ -33,7 +33,7 @@ while run:
     c1 = pygame.draw.rect(screen, white, (25, 275, 100, 100))
     c2 = pygame.draw.rect(screen, white, (150, 275, 100, 100))
     c3 = pygame.draw.rect(screen, white, (275, 275, 100, 100))
-    draw_object = 'rect'
+    draw_object = 'rect'  # Change whether the computer or player goes first by changing the draw object to rect or circle
     running = True
 
     # Draw the rectangles
@@ -128,7 +128,6 @@ while run:
                                 return False
                         else:
                             board[i][j] = 0
-                            break
             for i in range(0, 3):  # Checks if the player is going to win. If it returns True, the following statements is going to block the move
                 for j in range(0, 3):
                     if board[i][j] == 0:
@@ -296,4 +295,5 @@ while run:
                 player_move(position)
                 computer_move()
                 check_player_won()
+            computer_move()
         pygame.display.update()
