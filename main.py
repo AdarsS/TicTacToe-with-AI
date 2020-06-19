@@ -10,6 +10,7 @@ import pygame
 import random
 
 pygame.init()
+pygame.display.set_caption("Tic Tac Toe")
 screen = pygame.display.set_mode((400, 500))
 run = True
 
