@@ -88,9 +88,9 @@ while run:
 
     # Record computer moves
     def computer_move():
-        choices = [1, 2, 3]  # 9 choices for the computer to make
+        choices = [0, 1, 2, 3]  # 4 random choices for the computer to make
         x = random.choice(choices)  # x picks a choice from the choices list
-        while draw_object == 'circle' and not check_player_won():
+        while draw_object == 'circle' and not check_won():
             if board[1][1] == 0:  # if the player first move isn't the centre spot the computer will make the move
                 draw_circle(200, 200, 35, 35, 1, 1)
                 break
@@ -165,24 +165,23 @@ while run:
             if board[0][0] == 0:
                 draw_circle(75, 75, 35, 35, 0, 0)
                 break
-            if x == 1 and board[0][1] == 0:
-                draw_circle(200, 75, 35, 35, 0, 1)
             if board[0][2] == 0:
                 draw_circle(325, 75, 35, 35, 0, 2)
                 break
-            if board[1][0] == 0:
-                draw_circle(75, 200, 35, 35, 1, 0)
-                break
-            if x == 2 and board[1][2] == 0:
-                draw_circle(325, 200, 35, 35, 1, 2)
             if board[2][0] == 0:
                 draw_circle(75, 325, 35, 35, 2, 0)
                 break
-            if x == 3 and board[2][1] == 0:
-                draw_circle(200, 325, 35, 35, 2, 1)
             if board[2][2] == 0:
                 draw_circle(325, 325, 35, 35, 2, 2)
                 break
+            if x == 0 and board[0][1] == 0:
+                draw_circle(200, 75, 35, 35, 0, 1)
+            if x == 1 and board[1][0] == 0:
+                draw_circle(75, 200, 35, 35, 1, 0)
+            if x == 2 and board[1][2] == 0:
+                draw_circle(325, 200, 35, 35, 1, 2)
+            if x == 3 and board[2][1] == 0:
+                draw_circle(200, 325, 35, 35, 2, 1)
             if 0 not in board[0] and 0 not in board[1] and 0 not in board[2]:  # check if any positions available if not break out of loop
                 break
             else:
@@ -235,7 +234,7 @@ while run:
             return True
 
     #  Check if the player or computer won or Draw
-    def check_player_won():
+    def check_won():
         global board
         # Row wise
         if (board[0][0] == 1 and board[0][1] == 1 and board[0][2] == 1) or (
@@ -299,6 +298,6 @@ while run:
                 position = pygame.mouse.get_pos()
                 player_move(position)
                 computer_move()
-                check_player_won()
+                check_won()
             computer_move()
         pygame.display.update()
